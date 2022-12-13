@@ -1,4 +1,4 @@
-resource "oci_identity_compartment" "_" {
+resource "oci_identity_compartment" "compartment" {
   name          = var.name
   description   = var.name
   enable_delete = true
@@ -8,18 +8,18 @@ locals {
   compartment_id = oci_identity_compartment._.id
 }
 
-data "oci_identity_availability_domains" "_" {
+data "oci_identity_availability_domains" "availability_domains" {
   compartment_id = local.compartment_id
 }
 
-data "oci_core_images" "_" {
+data "oci_core_images" "images" {
   compartment_id           = local.compartment_id
   shape                    = var.shape
   operating_system         = var.operating_system
   operating_system_version = var.operating_system_version
 }
 
-resource "oci_core_instance" "_" {
+resource "oci_core_instance" "instance" {
   for_each            = local.nodes
   display_name        = each.value.node_name
   availability_domain = data.oci_identity_availability_domains._.availability_domains[var.availability_domain].name
