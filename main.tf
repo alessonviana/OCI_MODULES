@@ -1,15 +1,16 @@
 resource "oci_identity_compartment" "compartment" {
   name          = var.name
   description   = var.name
+  compartment_id = var.compartment_id
   enable_delete = true
 }
 
-locals {
-  compartment_id = oci_identity_compartment._.id
-}
+#locals {
+#  compartment_id = var.compartment_id #oci_identity_compartment._.id
+#}
 
 data "oci_identity_availability_domains" "availability_domains" {
-  compartment_id = local.compartment_id
+  compartment_id = var.compartment_id
 }
 
 data "oci_core_images" "images" {
