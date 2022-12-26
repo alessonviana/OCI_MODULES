@@ -42,6 +42,45 @@ resource "oci_core_instance" "instance" {
   }
 }
 
+resource "oci_core_vcn" "vcn" {
+  compartment_id = local.compartment_id
+  cidr_block     = "192.168.24.0/24"
+}
+
+resource "oci_core_internet_gateway" "gateway" {
+  compartment_id = local.compartment_id
+  vcn_id         = oci_core_vcn._.id
+}
+
+resource "oci_core_default_route_table" "route_table" {
+  manage_default_resource_id = oci_core_vcn._.default_route_table_id
+  route_rules {
+    destination       = "0.0.0.0/0"
+    destination_type  = "CIDR_BLOCK"
+    network_entity_id = oci_core_internet_gateway._.id
+  }
+}
+
+resource "oci_core_default_security_list" "security_list" {
+  manage_default_resource_id = oci_core_vcn._.default_security_list_id
+  ingress_security_rules {
+    protocol = "all"
+    source   = "0.0.0.0/0"
+  }
+  egress_security_rules {
+    protocol    = "all"
+    destination = "0.0.0.0/0"
+  }
+}
+
+resource "oci_core_subnet" "subnet" {
+  compartment_id    = local.compartment_id
+  cidr_block        = var.cidr_block
+  vcn_id            = oci_core_vcn._.id
+  route_table_id    = oci_core_default_route_table._.id
+  security_list_ids = [oci_core_default_security_list._.id]
+}
+
 locals {
   nodes = {
     for i in range(1, 1 + var.how_many_nodes) :
