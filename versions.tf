@@ -1,3 +1,4 @@
+/*
 terraform {
   required_providers {
     oci = {
@@ -7,3 +8,4 @@ terraform {
   }
   required_version = ">= 1.0.0"
 }
+*/
