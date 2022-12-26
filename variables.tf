@@ -90,6 +90,10 @@ variable "enable_delete" {
 }
 */
 
+########################
+# Compartment
+########################
+
 variable "tenancy_ocid" {
   type = string
   description = "(Deprecated) The OCID of the tenancy."
@@ -124,5 +128,5 @@ variable "compartment_create" {
 variable "enable_delete" {
   type = bool
   description = "Enable compartment delete on destroy. If true, compartment will be deleted when `terraform destroy` is executed; If false, compartment will not be deleted on `terraform destroy` execution"
-  default     = false
+  default     = true
 }
