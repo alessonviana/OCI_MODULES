@@ -1,9 +1,11 @@
-#resource "oci_identity_compartment" "compartment" {
-#  name          = var.name
-#  description   = var.name
-#  compartment_id = var.compartment_id
-#  enable_delete = true
-#}
+/*
+resource "oci_identity_compartment" "compartment" {
+  name          = var.name
+  description   = var.name
+  compartment_id = var.compartment_id
+  enable_delete = true
+}
+*/
 resource "oci_identity_compartment" "this" {
   count          = var.compartment_create ? 1 : 0
   compartment_id = var.compartment_id != null ? var.compartment_id : var.tenancy_ocid
@@ -27,9 +29,11 @@ locals {
   parent_compartment_ids = concat(flatten(data.oci_identity_compartments.this.*.compartments), list(map("compartment_id", "")))
 }
 
-#locals {
-#  compartment_id = var.compartment_id #oci_identity_compartment._.id
-#}
+/*
+locals {
+  compartment_id = var.compartment_id #oci_identity_compartment._.id
+}
+*/
 
 data "oci_identity_availability_domains" "availability_domains" {
   compartment_id = var.compartment_id
