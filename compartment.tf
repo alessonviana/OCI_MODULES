@@ -1,3 +1,4 @@
+/*
 resource "oci_identity_compartment" "_" {
   count          = var.compartment_create ? 1 : 0
   compartment_id = var.compartment_id != null ? var.compartment_id : var.tenancy_ocid
@@ -20,3 +21,4 @@ locals {
   compartment_ids        = concat(flatten(data.oci_identity_compartments.this.*.compartments), [{ id = "" }])
   parent_compartment_ids = concat(flatten(data.oci_identity_compartments.this.*.compartments), [{ compartment_id = "" }])
 }
+*/
