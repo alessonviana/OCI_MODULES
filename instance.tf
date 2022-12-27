@@ -24,7 +24,7 @@ resource "oci_core_instance" "instance" {
     source_type = "image"
   }
   create_vnic_details {
-    subnet_id  = ./network/oci_core_subnet._.id
+    subnet_id  = oci_core_subnet._.id
     private_ip = each.value.ip_address
   }
   metadata = {
