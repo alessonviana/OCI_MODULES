@@ -1,4 +1,3 @@
-/*
 resource "tls_private_key" "ssh" {
   algorithm = "RSA"
   rsa_bits  = "4096"
@@ -19,4 +18,3 @@ resource "local_file" "ssh_public_key" {
 locals {
   authorized_keys = [chomp(tls_private_key.ssh.public_key_openssh)]
 }
-*/
