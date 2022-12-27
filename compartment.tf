@@ -1,5 +1,5 @@
 resource "oci_identity_compartment" "_" {
-  compartment_create          = var.compartment_create 
+  #compartment_create          = var.compartment_create 
   compartment_id = var.compartment_id != null ? var.compartment_id : var.tenancy_ocid
   name           = var.compartment_name
   description    = var.compartment_description
