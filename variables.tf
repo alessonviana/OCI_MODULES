@@ -4,6 +4,7 @@
 
 variable "name" {
   type    = string
+  default = "k3s"
 }
 
 

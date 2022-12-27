@@ -57,5 +57,5 @@ locals {
       role       = i == 1 ? "controlplane" : "worker"
     }
   }
-} 
+}
 
