@@ -132,7 +132,7 @@ variable "memory_in_gbs_per_node" {
 
 variable "cidr_block" {
   type  = string
-  default  = "192.168.24.0/24"
+  default  = "10.0.0.0/24"
 } 
 
 variable "tenancy_ocid" {

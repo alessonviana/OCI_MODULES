@@ -59,7 +59,7 @@ locals {
     for i in range(1, 1 + var.how_many_nodes) :
     i => {
       node_name  = format("node%d", i)
-      ip_address = format("192.168.24.%d", 192 + i)
+      ip_address = format("10.0.0.%d", 192 + i)
       role       = i == 1 ? "controlplane" : "worker"
     }
   }
