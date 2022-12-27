@@ -1,5 +1,5 @@
 /*
-resource "oci_identity_compartment" "this" {
+resource "oci_identity_compartment" "_" {
   count          = var.compartment_create ? 1 : 0
   compartment_id = var.compartment_id != null ? var.compartment_id : var.tenancy_ocid
   name           = var.compartment_name
@@ -7,7 +7,7 @@ resource "oci_identity_compartment" "this" {
   enable_delete  = var.enable_delete
 }
 
-data "oci_identity_compartments" "this" {
+data "oci_identity_compartments" "_" {
   count          = var.compartment_create ? 0 : 1
   compartment_id = var.compartment_id
 
