@@ -2,7 +2,7 @@ data "oci_identity_availability_domains" "_" {
   compartment_id = var.compartment_id
 }
 
-data "oci_core_images" "-" {
+data "oci_core_images" "_" {
   compartment_id           = var.compartment_id
   shape                    = var.shape
   operating_system         = var.operating_system
