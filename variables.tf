@@ -1,6 +1,10 @@
 #####################
 # compartment
 #####################
+variable "name" {
+  type    = string
+  default = "k3s_teste"
+}
 
 variable "tenancy_ocid" {
   type = string
