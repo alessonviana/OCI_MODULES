@@ -1,3 +1,7 @@
+data "oci_identity_availability_domains" "_" {
+  compartment_id = var.compartment_id
+}
+
 data "oci_core_images" "images" {
   compartment_id           = var.compartment_id
   shape                    = var.shape
@@ -28,14 +32,14 @@ resource "oci_core_instance" "instance" {
   }
 }
 
-locals {
-  nodes = {
-    for i in range(1, 1 + var.how_many_nodes) :
-    i => {
-      node_name  = format("node%d", i)
-      ip_address = format("192.168.24.%d", 192 + i)
-      role       = i == 1 ? "controlplane" : "worker"
-    }
-  }
-} 
+#locals {
+#  nodes = {
+#    for i in range(1, 1 + var.how_many_nodes) :
+#    i => {
+#      node_name  = format("node%d", i)
+#      ip_address = format("192.168.24.%d", 192 + i)
+#      role       = i == 1 ? "controlplane" : "worker"
+#    }
+#  }
+#} 
 
