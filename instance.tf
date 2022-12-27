@@ -9,7 +9,7 @@ data "oci_core_images" "_" {
   operating_system_version = var.operating_system_version
 }
 
-resource "oci_core_instance" "instance" {
+resource "oci_core_instance" "_" {
   for_each            = local.nodes
   display_name        = each.value.node_name
   availability_domain = data.oci_identity_availability_domains._.availability_domains[var.availability_domain].name
