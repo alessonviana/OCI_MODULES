@@ -43,6 +43,11 @@ variable "enable_delete" {
 # instance
 ##################
 
+variable "availability_domain" {
+  type    = number
+  default = 0
+}
+
 variable "shape" {
   type    = string
   default = "VM.Standard.A1.Flex"

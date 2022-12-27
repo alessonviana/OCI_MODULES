@@ -30,6 +30,17 @@ resource "oci_core_instance" "instance" {
   metadata = {
     ssh_authorized_keys = join("\n", local.authorized_keys)
   }
+  connection {
+    host        = self.public_ip
+    user        = "ubuntu"
+    private_key = tls_private_key.ssh.private_key_pem
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "tail -f /var/log/cloud-init-output.log &",
+      "cloud-init status --wait >/dev/null",
+    ]
+  }
 }
 
 locals {
