@@ -28,3 +28,8 @@ variable "ocpus_per_node" {
   type    = number
   default = 1
 }
+
+variable "how_many_nodes" {
+  type    = number
+  default = 3
+}
