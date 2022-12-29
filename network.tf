@@ -1,7 +1,6 @@
 resource "oci_core_vcn" "_" {
   compartment_id = local.compartment_id
-  cidr_block     = var.cidr_block
-}
+  cidr_block     = "192.168.50.0/24"
 
 resource "oci_core_internet_gateway" "_" {
   compartment_id = local.compartment_id
@@ -31,7 +30,7 @@ resource "oci_core_default_security_list" "_" {
 
 resource "oci_core_subnet" "_" {
   compartment_id    = local.compartment_id
-  cidr_block        = var.cidr_block_subnet
+  cidr_block        = "192.168.50.0/25"
   vcn_id            = oci_core_vcn._.id
   route_table_id    = oci_core_default_route_table._.id
   security_list_ids = [oci_core_default_security_list._.id]
