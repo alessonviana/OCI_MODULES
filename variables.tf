@@ -48,10 +48,10 @@ variable "memory_in_gbs_per_node" {
 
  variable "cidr_block" {
   type    = string
-  default = "192.168.50.0/24"
+  default = "10.10.10.0/23"
 }
 
  variable "cidr_block_subnet" {
   type    = string
-  default = "192.168.50.0/25"
+  default = "10.10.10.0/24"
 }

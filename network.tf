@@ -1,6 +1,7 @@
 resource "oci_core_vcn" "_" {
   compartment_id = local.compartment_id
   cidr_block     = "10.10.10.0/23"
+}  
 
 resource "oci_core_internet_gateway" "_" {
   compartment_id = local.compartment_id
